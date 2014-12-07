@@ -22,7 +22,7 @@ class EmailVerifier::Checker
       mxs << { priority: rr.preference, address: rr.exchange.to_s }
     end
     if mxs.empty?
-      return [resolver.get_resource(domain, 'A').address.to_s]
+      return [resolver.getresource(domain, 'A').address.to_s]
     else
       return mxs.sort_by { |mx| mx[:priority] }
     end
