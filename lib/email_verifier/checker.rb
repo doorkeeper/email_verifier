@@ -75,7 +75,7 @@ class EmailVerifier::Checker
     begin
       ensure_250 @smtp.rcptto(address)
     rescue => e
-      if e.message[/^550/]
+      if e.message[/^550/] && e.message !~ /blocked/i
         return false
       else
         raise EmailVerifier::FailureException.new(e.message)
